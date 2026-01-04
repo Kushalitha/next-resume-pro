@@ -1,0 +1,93 @@
+name: "Dependabot Auto Merge (patch/minor)"
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+permissions:
+  pull-requests: write
+  contents: write
+  issues: write
+
+jobs:
+  auto-merge:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Dependabot PRs and merge if eligible
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            if (!context.payload || !context.payload.workflow_run) {
+              console.info('No workflow_run payload present; skipping');
+              return;
+            }
+
+            const prs = context.payload.workflow_run.pull_requests || [];
+            if (!prs.length) {
+              console.info('No PRs associated with this workflow run.');
+              return;
+            }
+
+            for (const prRef of prs) {
+              const pr = await github.rest.pulls.get({ 
+                owner: context.repo.owner, 
+                repo: context.repo.repo, 
+                pull_number: prRef.number 
+              });
+              const author = pr.data.user?.login;
+              const labels = (pr.data.labels || [])
+                .map(l => (typeof l === 'string' ? l : l.name))
+                .filter(Boolean);
+
+              console.info(`Checking PR #${prRef.number} by ${author} (labels: ${labels.join(',')})`);
+
+              // Only consider Dependabot authored PRs
+              const isDependabot = author === 'dependabot[bot]' || 
+                                   author === 'dependabot-preview[bot]' || 
+                                   author === 'dependabot';
+              if (!isDependabot) {
+                console.info('Not a Dependabot PR — skipping');
+                continue;
+              }
+
+              // Must have dependencies label
+              if (!labels.includes('dependencies')) {
+                console.info('PR missing "dependencies" label — skipping');
+                continue;
+              }
+
+              // Avoid merging major bumps
+              const title = pr.data.title || '';
+              if (/major/i.test(title)) {
+                console.info('PR title appears to be a major bump — skipping auto-merge');
+                continue;
+              }
+
+              // Ensure PR is not draft
+              if (pr.data.draft) {
+                console.info('PR is a draft — skipping');
+                continue;
+              }
+
+              // Check mergeable state
+              if (pr.data.mergeable_state && 
+                  ['clean','has_hooks','unstable'].includes(pr.data.mergeable_state)) {
+                try {
+                  await github.rest.pulls.merge({ 
+                    owner: context.repo.owner, 
+                    repo: context.repo.repo, 
+                    pull_number: prRef.number, 
+                    merge_method: 'squash' 
+                  });
+                  console.info(`Merged PR #${prRef.number}`);
+                } catch (err) {
+                  console.warn(`Failed to merge PR #${prRef.number}: ${err}`);
+                }
+              } else {
+                console.info(`PR #${prRef.number} not in mergeable_state (${pr.data.mergeable_state}) — skipping`);
+              }
+            }

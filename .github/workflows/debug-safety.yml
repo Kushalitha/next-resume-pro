@@ -1,0 +1,135 @@
+name: Debug Safety Checks
+
+on:
+  push:
+    branches: [ main, master, staging ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  check-debug-code:
+    name: Scan code for debug flags in production branches
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for debug code in source files
+        run: |
+          echo "Scanning for debug code patterns..."
+          
+          # Check for console.log statements (except in scripts, tests, and config files)
+          if grep -r "console\.log" \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=scripts --exclude-dir=tests \
+            --exclude="*.test.*" --exclude="*.spec.*" --exclude="*.config.*" \
+            ./app ./components ./lib 2>/dev/null; then
+            echo "WARNING: Found console.log statements in production code"
+            echo "Consider removing them or using a proper logging library"
+            # Uncomment to make this fail the build:
+            # exit 1
+          fi
+          
+          # Check for debugger statements (exclude scripts and tests)
+          if grep -r "debugger;" \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=scripts --exclude-dir=tests \
+            ./app ./components ./lib 2>/dev/null; then
+            echo "ERROR: Found debugger statements in code"
+            exit 1
+          fi
+          
+          # Check for hardcoded DEBUG_ALLOW_READ=true (exclude tests and conditional checks)
+          if grep -r "DEBUG_ALLOW_READ\s*=\s*'true'" \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=scripts --exclude-dir=tests \
+            ./app ./components ./lib 2>/dev/null; then
+            echo "ERROR: Found hardcoded DEBUG_ALLOW_READ='true' assignment in code"
+            exit 1
+          fi
+          
+          if grep -r 'DEBUG_ALLOW_READ\s*=\s*"true"' \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=scripts --exclude-dir=tests \
+            ./app ./components ./lib 2>/dev/null; then
+            echo "ERROR: Found hardcoded DEBUG_ALLOW_READ=\"true\" assignment in code"
+            exit 1
+          fi
+          
+          # Check for hardcoded DEBUG_LOG=true (exclude tests and conditional checks)
+          if grep -r "DEBUG_LOG\s*=\s*'true'" \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=scripts --exclude-dir=tests \
+            ./app ./components ./lib 2>/dev/null; then
+            echo "ERROR: Found hardcoded DEBUG_LOG='true' assignment in code"
+            exit 1
+          fi
+          
+          if grep -r 'DEBUG_LOG\s*=\s*"true"' \
+            --include="*.ts" --include="*.tsx" --include="*.js" --include="*.jsx" \
+            --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=scripts --exclude-dir=tests \
+            ./app ./components ./lib 2>/dev/null; then
+            echo "ERROR: Found hardcoded DEBUG_LOG=\"true\" assignment in code"
+            exit 1
+          fi
+          
+          echo "✓ No problematic debug code found in production files"
+
+  check-env-files:
+    name: Check .env files for debug flags
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Scan .env.example for production debug flags
+        run: |
+          echo "Checking .env.example for debug flags..."
+          
+          if [ -f ".env.example" ]; then
+            if grep -q "DEBUG_ALLOW_READ=true" .env.example; then
+              echo "ERROR: .env.example contains DEBUG_ALLOW_READ=true"
+              exit 1
+            fi
+            if grep -q "DEBUG_LOG=true" .env.example; then
+              echo "ERROR: .env.example contains DEBUG_LOG=true"
+              exit 1
+            fi
+            echo "✓ .env.example is clean"
+          else
+            echo "No .env.example found - skipping"
+          fi
+
+  run-tests:
+    name: Run tests to catch debug issues
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      
+      - name: Run tests
+        run: npm test
+      
+      - name: Run linter
+        run: npm run lint
+
+  warn-staging-debug:
+    name: Warn if staging has debug enabled
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check staging configuration
+        run: |
+          echo "⚠️  This is a staging branch"
+          echo "Debug flags may be enabled for staging environment"
+          echo "Ensure DEBUG_READ_SECRET and DEBUG_WRITE_SECRET are set in staging environment"
+          echo "✓ Staging deployment allowed"
