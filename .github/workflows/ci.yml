@@ -12,7 +12,7 @@ jobs:
     env:
       EMAIL_ENABLED: 'false'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node
         uses: actions/setup-node@v4
         with:
@@ -71,7 +71,7 @@ jobs:
     needs: build-and-check
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Use Node
         uses: actions/setup-node@v4
         with:
