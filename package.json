@@ -62,12 +62,12 @@
     "husky": "^8.0.0",
     "pa11y": "9.0.1",
     "pa11y-ci": "4.0.1",
-    "postcss": "8.4.47",
-    "prettier": "3.3.0",
-    "tailwindcss": "3.4.15",
+    "postcss": "8.5.6",
+    "prettier": "3.7.4",
+    "tailwindcss": "3.4.19",
     "typescript": "^5.9.3",
     "vitest": "4.0.16",
-    "axe-core": "4.7.0",
-    "wait-on": "8.0.1"
+    "axe-core": "4.11.0",
+    "wait-on": "8.0.5"
   }
 }
