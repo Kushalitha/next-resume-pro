@@ -1,0 +1,260 @@
+/**
+* Next Resume Pro v1.0.0
+* Author: Kushalitha Maduranga
+* Year: 2026
+*
+* License:
+* - Code (TypeScript, JavaScript, build scripts): MIT License
+* - UI / Design (CSS, layout, visual components): CC BY 4.0
+* 	Attribution Required
+*
+* Repository:
+* https://github.com/Kushalitha
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --radius: 1rem;
+  --bg: #f8fafc; /* light neutral surface */
+  --surface: #ffffff; /* solid surface color for UI elements */
+  --muted: #f1f5f9;
+  --text: #0f172a;
+  --accent: 124 58 237; /* indigo as RGB */
+  --accent-2: 14 165 233; /* cyan */
+}
+
+.dark {
+  --bg: linear-gradient(180deg, #0B0F19 0%, #0E1324 100%); /* main dark background gradient */
+  --surface: #0b1220; /* solid surface for UI elements in dark */
+  --muted: #0b1220;
+  --text: #e6eef8;
+} 
+
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  min-height: 100vh;
+  background: transparent; /* let html own the background (color or gradient) */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern card utility */
+.card {
+  @apply bg-white/95 dark:bg-slate-900/95 shadow-card-md rounded-xl p-6 md:p-8 border border-slate-100 dark:border-slate-800;
+  transition: box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
+}
+
+/* Stronger visible state for interactive or focused cards */
+.card:focus-within,
+.card:focus,
+.card:hover {
+  box-shadow: 0 12px 30px rgba(15,23,42,0.12), 0 6px 18px rgba(15,23,42,0.06);
+  transform: translateY(-4px);
+}
+
+/* If the card is focusable (tabindex set) ensure keyboard ring */
+.card[tabindex] {
+  outline: none;
+}
+.card[tabindex]:focus-visible {
+  box-shadow: 0 12px 30px rgba(124,58,237,0.14), 0 6px 18px rgba(124,58,237,0.06);
+  border-color: rgba(124,58,237,0.24);
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 ease-in-out;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, rgba(var(--accent),0.12), rgba(var(--accent-2),0.12));
+  color: rgb(var(--accent));
+  border: 1px solid rgba(124,58,237,0.12);
+}
+
+.btn-cta {
+  @apply btn bg-gradient-to-r from-accent-500 via-purple-500 to-indigo-500 text-white shadow-md hover:shadow-lg transform-gpu hover:-translate-y-0.5;
+}
+
+/* Focus visible (keyboard) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(124,58,237,0.14);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(2,6,23,0.08);
+}
+
+/* Small helper for accessible hidden labels */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Headings */
+.h1 {
+  @apply text-4xl md:text-5xl font-extrabold tracking-tight leading-tight;
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+.h2 {
+  @apply text-2xl md:text-3xl font-bold tracking-tight;
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 320ms ease-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* heart pop animation for footer */
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.2); }
+  60% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+.heart-pop {
+  animation: heartPop 1.6s ease-in-out infinite;
+  display: inline-block;
+}
+/* Clients ticker animation */
+.ticker-track { display: inline-flex; min-width: max-content; align-items: center; }
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.ticker-track.animate-scroll {
+  animation: scrollLeft 20s linear infinite;
+  will-change: transform;
+}
+
+/* compact client item spacing */
+.ticker-track > * { padding: 0.25rem 0.5rem; }
+.ticker-track img { height: 2.25rem; }
+
+/* Pause class for accessibility / JS toggles */
+.ticker-track[aria-paused='true'] { animation-play-state: paused !important; }
+
+/* Prevent hover lift for specific cards (e.g., placement photo) */
+.card.no-hover,
+.card.no-hover:focus,
+.card.no-hover:focus-within {
+  transform: none !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04) !important;
+}
+.card.no-hover:hover {
+  transform: none !important;
+}
+
+/* Heart pop animation used in footer */
+.heart-pop {
+  display: inline-block;
+  transform-origin: center center;
+  animation: heart-pop 1200ms ease-in-out infinite;
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); }
+  70% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .animate-blob, .animate-fade-in { animation: none !important; transition: none !important; }
+  /* Respect reduced motion for loaders */
+  .dot { animation: none !important; }
+}
+
+/* Loading / Progress styles 🔧 */
+/* Keep only the three-dot loader animation used by `app/loading.tsx` */
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: rgba(124,58,237,1);
+  opacity: 0.6;
+  transform: translateY(0);
+  animation: loader-bounce 1s infinite ease-in-out;
+}
+
+.dot.delay-200 { animation-delay: 0.15s }
+.dot.delay-400 { animation-delay: 0.3s }
+
+@keyframes loader-bounce {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-6px); }
+}
+
+/* make overlay responsive */
+@media (max-width: 640px) {
+  div[role='status'] > div { padding: 1rem; }
+}
+
+/* Slightly smaller bullet/list text for better density on mobile and compact layouts */
+ul.list-disc li,
+ul.list-inside li,
+ol li,
+.prose li {
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.6;
+}
+
+/* Further reduce on narrow screens if desired */
+@media (max-width: 420px) {
+  ul.list-disc li,
+  ul.list-inside li,
+  ol li,
+  .prose li {
+    font-size: 0.8125rem; /* ~13px */
+  }
+}
+

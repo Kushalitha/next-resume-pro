@@ -1,0 +1,64 @@
+name: "npm audit"
+
+on:
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 6 * * *' # Runs at 06:00 UTC daily
+
+jobs:
+  audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      
+      - name: Run npm audit
+        id: audit
+        continue-on-error: true
+        run: |
+          echo "Running npm audit..."
+          npm audit --json > audit.json
+          npm audit
+      
+      - name: Check for vulnerabilities
+        run: |
+          if [ -f audit.json ]; then
+            VULNS=$(jq '.metadata.vulnerabilities.total' audit.json)
+            echo "Total vulnerabilities found: $VULNS"
+            
+            if [ "$VULNS" -gt 0 ]; then
+              echo "⚠️ Vulnerabilities detected!"
+              jq '.vulnerabilities' audit.json
+              
+              # Fail if high or critical vulnerabilities found
+              HIGH=$(jq '.metadata.vulnerabilities.high' audit.json)
+              CRITICAL=$(jq '.metadata.vulnerabilities.critical' audit.json)
+              
+              if [ "$HIGH" -gt 0 ] || [ "$CRITICAL" -gt 0 ]; then
+                echo "❌ High or critical vulnerabilities found!"
+                echo "High: $HIGH, Critical: $CRITICAL"
+                exit 1
+              else
+                echo "⚠️ Only low/moderate vulnerabilities found"
+              fi
+            else
+              echo "✅ No vulnerabilities found"
+            fi
+          fi
+      
+      - name: Upload audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report-${{ github.run_number }}
+          path: audit.json
+          retention-days: 30

@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    env:
+      EMAIL_ENABLED: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Enforce EMAIL_ENABLED is disabled in CI
+        run: |
+          if [ "${EMAIL_ENABLED}" = "true" ]; then
+            echo "ERROR: EMAIL_ENABLED=true is not allowed in this CI run. Disable EMAIL_ENABLED or use a dedicated staging workflow.";
+            exit 1;
+          fi
+
+      - name: Build
+        run: npm run build
+      - name: Start server (background)
+        run: npm run start:ci &
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000 --timeout 60000
+      
+      - name: Install Chrome system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1
+
+      - name: Run accessibility checks (pa11y-ci)
+        run: npm run a11y:ci
+      - name: Run ESLint
+        run: npm run lint
+      - name: Run tests (vitest)
+        run: npm test
+      - name: Run typecheck
+        run: npm run typecheck
+      - name: Stop server
+        if: always()
+        run: |
+          pkill -f "next start" || true
+          if lsof -i :3000 -t >/dev/null 2>&1; then 
+            kill -9 $(lsof -i :3000 -t) || true
+          fi
+
+  package-release:
+    name: Package production artifact
+    runs-on: ubuntu-latest
+    needs: build-and-check
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build
+        run: npm run build
+      - name: Prune devDependencies
+        run: npm prune --production
+      - name: Pack production artifact
+        run: tar -czf release.tar.gz .next public package.json package-lock.json node_modules
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: release.tar.gz
