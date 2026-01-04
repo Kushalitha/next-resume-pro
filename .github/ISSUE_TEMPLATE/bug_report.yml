@@ -1,0 +1,80 @@
+name: Bug Report
+description: Report a bug or issue with Next Resume Pro
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the sections below to help us understand and fix the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the bug or unexpected behavior you encountered.
+      placeholder: "Example: The contact form doesn't submit when I click Send."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Tell us how to reproduce the issue. Be specific.
+      placeholder: |
+        1. Go to /contact
+        2. Fill in name and email
+        3. Click Send
+        4. Nothing happens
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+      placeholder: "Form should submit and show a success message."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened?
+      placeholder: "The button doesn't respond and no error is shown."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser are you using?
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other
+    validations:
+      required: false
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js version
+      description: "Run `node -v` in your terminal and paste the output here."
+      placeholder: "v20.x.x"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Any other info, screenshots, or error logs that might help.
+      placeholder: "Add screenshots or paste console errors here."
+    validations:
+      required: false

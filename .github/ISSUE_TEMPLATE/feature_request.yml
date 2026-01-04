@@ -1,0 +1,44 @@
+name: Feature Request
+description: Suggest a new feature or improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make Next Resume Pro better? We'd love to hear it!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Explain the problem or limitation you're facing.
+      placeholder: "It's hard to customize the color scheme without editing multiple files."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you like to see this implemented?
+      placeholder: "Add a centralized theme config file where users can define primary/secondary colors."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you thought about other ways to solve this?
+      placeholder: "Could use CSS variables, but a config file would be easier for non-developers."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Mockups, links, or examples that help explain the feature.
+      placeholder: "Link to similar implementations or screenshots."
+    validations:
+      required: false
