@@ -49,8 +49,8 @@
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.0",
-    "@types/node": "^20.19.27",
-    "@types/nodemailer": "^7.0.4",
+    "@types/node": "^20.19.28",
+    "@types/nodemailer": "^7.0.5",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^18.3.0",
     "autoprefixer": "^10.4.20",
@@ -67,7 +67,7 @@
     "tailwindcss": "3.4.19",
     "typescript": "^5.9.3",
     "vitest": "4.0.16",
-    "axe-core": "4.11.0",
+    "axe-core": "4.11.1",
     "wait-on": "8.0.5"
   }
 }
