@@ -145,8 +145,8 @@ Comprehensive feature set designed for professional portfolios, focused on acces
 
 ### Prerequisites
 
-- Node.js 18+ (Node 20 recommended)
-- npm (or yarn/pnpm)
+- Node.js 20+ (required)
+- npm 10+ (or yarn/pnpm)
 
 ### Install
 

@@ -3,6 +3,10 @@
   "version": "2.0.0",
   "author": "Kushalitha Maduranga",
   "license": "(MIT AND CC-BY-4.0)",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "dev:inner": "next dev",
