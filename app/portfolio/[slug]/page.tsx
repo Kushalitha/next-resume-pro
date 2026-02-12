@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -37,8 +37,8 @@ export async function generateStaticParams() {
   return combined.map((p) => ({ slug: p.id }))
 }
 
-export default function ProjectPage({ params }: { params: Params }) {
-  const { slug } = params
+export default async function ProjectPage({ params }: { params: Promise<Params> }) {
+  const { slug } = await params
   const project = combined.find((p) => p.id === slug)
 
   if (!project) {
@@ -60,7 +60,7 @@ export default function ProjectPage({ params }: { params: Params }) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <h1 className="h1 mb-2">{project.title}</h1>
-          <div className="w-10 h-1 rounded bg-[color:rgb(var(--accent))] mb-4" />
+          <div className="w-10 h-1 rounded bg-[rgb(var(--accent))] mb-4" />
           <div className="text-sm text-slate-600 dark:text-slate-300 mb-4">{project.category} • {project.tags?.join(', ')}</div>
           <p className="text-slate-700 dark:text-slate-200 mb-6">{project.details}</p>
 

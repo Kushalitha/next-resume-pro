@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -70,7 +70,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
               role="tab"
               aria-selected={active === cat}
               onClick={() => { setActive(cat); setPage(1); }}
-              className={`text-sm px-3 py-1 rounded-md font-medium ${active === cat ? 'text-[color:rgb(var(--accent))]' : 'text-slate-400 hover:text-slate-200'}`}
+              className={`cursor-pointer text-sm px-3 py-1 rounded-md font-medium ${active === cat ? 'text-[rgb(var(--accent))]' : 'text-slate-400 hover:text-slate-700  dark:hover:text-slate-200'}`}
             >
               {cat}
             </button>
@@ -91,7 +91,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
 
             <button
               type="button"
-              className="p-2 rounded md:hidden"
+              className="cursor-pointer p-2 rounded md:hidden"
               onClick={() => setOpenFilters((s) => !s)}
               aria-label="Open filters"
             >
@@ -102,7 +102,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
             {openFilters && (
               <div className="absolute left-0 top-full mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded shadow-md md:hidden z-50">
                 {categories.map((cat) => (
-                  <button key={cat} onClick={() => { setActive(cat); setOpenFilters(false); setPage(1); }} className={`w-full text-left px-3 py-2 text-sm ${active === cat ? 'bg-[color:rgb(var(--accent))]/10 text-[color:rgb(var(--accent))]' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                  <button key={cat} onClick={() => { setActive(cat); setOpenFilters(false); setPage(1); }} className={`cursor-pointer w-full text-left px-3 py-2 text-sm ${active === cat ? 'bg-[rgb(var(--accent))]/10 text-[rgb(var(--accent))]' : 'hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
                     {cat}
                   </button>
                 ))}
@@ -134,7 +134,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
         <div className="mt-6 flex items-center justify-center gap-2">
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
-            className="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800/70"
+            className="cursor-pointer px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800/70 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Previous page"
             disabled={Math.min(Math.max(1, page), totalPages) === 1}
           >
@@ -145,7 +145,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
               <button
                 key={p}
                 onClick={() => setPage(p)}
-                className={`px-3 py-1 rounded-md ${Math.min(Math.max(1, page), totalPages) === p ? 'bg-[color:rgb(var(--accent))] text-white' : 'bg-white/90 dark:bg-slate-800/70'}`}
+                className={`cursor-pointer px-3 py-1 rounded-md ${Math.min(Math.max(1, page), totalPages) === p ? 'bg-[rgb(var(--accent))] text-white' : 'bg-white/90 dark:bg-slate-800/70'}`}
                 aria-current={Math.min(Math.max(1, page), totalPages) === p ? 'true' : undefined}
               >
                 {p}
@@ -154,7 +154,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
           </div>
           <button
             onClick={() => setPage((p) => Math.min(2, p + 1))}
-            className="px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800/70"
+            className="cursor-pointer px-3 py-1 rounded-md bg-white/90 dark:bg-slate-800/70 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Next page"
             disabled={Math.min(Math.max(1, page), totalPages) === totalPages}
           >

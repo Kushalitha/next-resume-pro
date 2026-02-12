@@ -1,5 +1,5 @@
 /**
- * Next Resume Pro v1.0.0
+ * Next Resume Pro v2.0.0
  * Author: Kushalitha Maduranga
  * GitHub: https://github.com/Kushalitha
  * License: MIT — Please credit if modified or redistributed
@@ -28,7 +28,7 @@ export default function Contact() {
     <section className="max-w-none sm:max-w-6xl mx-auto px-1 sm:px-1 lg:px-1">
       <div>
         <h1 className="h1 mb-2">Contact</h1>
-        <div className="w-10 h-1 rounded bg-[color:rgb(var(--accent))] mb-4" />
+        <div className="w-10 h-1 rounded bg-[rgb(var(--accent))] mb-4" />
         <p className="text-slate-600 dark:text-slate-300 mb-6">{contact.contactBlurb}</p>
       </div>
 

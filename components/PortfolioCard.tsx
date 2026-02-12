@@ -1,12 +1,12 @@
-/**
-* Next Resume Pro v1.0.0
+﻿/**
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
 * License:
 * - Code (TypeScript, JavaScript, build scripts): MIT License
 * - UI / Design (CSS, layout, visual components): CC BY 4.0
-* 	Attribution Required
+* Attribution Required
 *
 * Repository:
 * https://github.com/Kushalitha
@@ -21,13 +21,13 @@ import type { PortfolioItem } from '../content/portfolio/index';
 
 import Link from 'next/link'
 
-export default function PortfolioCard({ item }: { item: PortfolioItem }) {
+const PortfolioCard = React.memo(function PortfolioCard({ item }: { item: PortfolioItem }) {
   const href = item.href ?? `/portfolio/${item.id}`
 
   return (
     <Link href={href} className="block">
       <UICard className="overflow-hidden hover:shadow-lg transition-shadow">
-        <div className="w-full h-32 bg-gradient-to-br from-slate-800/10 to-slate-400/6 dark:from-slate-700/30 dark:to-slate-800/40 rounded-md overflow-hidden">
+        <div className="w-full h-32 bg-linear-to-br from-slate-800/10 to-slate-400/6 dark:from-slate-700/30 dark:to-slate-800/40 rounded-md overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={item.image ?? '/profile.jpg'} alt={item.title} className="w-full h-full object-cover" />
         </div>
@@ -40,4 +40,6 @@ export default function PortfolioCard({ item }: { item: PortfolioItem }) {
       </UICard>
     </Link>
   );
-}
+});
+
+export default PortfolioCard;

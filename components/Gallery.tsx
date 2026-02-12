@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -14,7 +14,7 @@
 
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import Image from 'next/image'
 
@@ -50,16 +50,16 @@ export default function Gallery({ images, altPrefix }: { images: string[]; altPr
   const touchStartX = React.useRef<number | null>(null)
   const touchCurrentX = React.useRef<number | null>(null)
 
-  function handleTouchStart(e: React.TouchEvent) {
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
     touchCurrentX.current = e.touches[0].clientX
-  }
+  }, []);
 
-  function handleTouchMove(e: React.TouchEvent) {
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
     touchCurrentX.current = e.touches[0].clientX
-  }
+  }, []);
 
-  function handleTouchEnd() {
+  const handleTouchEnd = useCallback(() => {
     const start = touchStartX.current
     const end = touchCurrentX.current
     if (start === null || end === null) return
@@ -76,7 +76,7 @@ export default function Gallery({ images, altPrefix }: { images: string[]; altPr
     // reset refs
     touchStartX.current = null
     touchCurrentX.current = null
-  }
+  }, [images.length]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -136,21 +136,21 @@ export default function Gallery({ images, altPrefix }: { images: string[]; altPr
 
   // Modal markup rendered into body to avoid ancestor stacking/overflow clipping
   const modal = (
-    <div onClick={(e) => { if (e.currentTarget === e.target) setOpen(null) }} className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 p-4 sm:p-0" role="dialog" aria-modal="true" aria-label={`${altPrefix ?? 'Gallery'} dialog`}>
+    <div onClick={(e) => { if (e.currentTarget === e.target) setOpen(null) }} className="fixed inset-0 z-9999 flex items-center justify-center bg-black/70 p-4 sm:p-0" role="dialog" aria-modal="true" aria-label={`${altPrefix ?? 'Gallery'} dialog`}>
       <div ref={modalRef} tabIndex={-1} onKeyDown={onModalKeyDown} className="relative w-full max-w-[95vw] sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl">
         {/* Use neutral slate tones so the modal works well in both light and dark themes */}
         <div className="bg-slate-50 dark:bg-slate-900/80 rounded-lg shadow-lg overflow-hidden relative max-h-[96vh]">
-          <button ref={closeBtnRef} aria-label="Close" onClick={() => setOpen(null)} className="absolute right-3 top-3 z-50 text-slate-900 bg-white/90 dark:text-slate-100 dark:bg-slate-800/80 text-sm p-3 sm:p-2 rounded-full hover:bg-white/95 dark:hover:bg-slate-700/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-white" title="Close">
+          <button ref={closeBtnRef} aria-label="Close" onClick={() => setOpen(null)} className="cursor-pointer absolute right-3 top-3 z-50 text-slate-900 bg-white/90 dark:text-slate-100 dark:bg-slate-800/80 text-sm p-3 sm:p-2 rounded-full hover:bg-white/95 dark:hover:bg-slate-700/70 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-white" title="Close">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
 
-            <button aria-label="Previous" onClick={() => setOpen((i) => (i === null ? null : Math.max(0, i - 1)))} className="absolute left-3 top-1/2 -translate-y-1/2 z-50 text-slate-900 dark:text-slate-100 text-3xl md:text-2xl bg-white/90 dark:bg-slate-800/80 hover:bg-white/95 dark:hover:bg-slate-700/70 p-3 sm:p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-white" title="Previous">‹</button>
+            <button aria-label="Previous" onClick={() => setOpen((i) => (i === null ? null : Math.max(0, i - 1)))} className="cursor-pointer absolute left-3 top-1/2 -translate-y-1/2 z-50 text-slate-900 dark:text-slate-100 text-3xl md:text-2xl bg-white/90 dark:bg-slate-800/80 hover:bg-white/95 dark:hover:bg-slate-700/70 p-3 sm:p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-white" title="Previous">‹</button>
 
-          <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} className="relative w-full max-w-full h-[60vh] md:h-[72vh] lg:h-[80vh] xl:h-[84vh] sm:aspect-[4/3] bg-slate-100 dark:bg-slate-900/70 flex items-center justify-center border-2 border-slate-200 dark:border-slate-700 rounded-md shadow-sm overflow-hidden mx-auto">
+          <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} className="relative w-full max-w-full h-[60vh] md:h-[72vh] lg:h-[80vh] xl:h-[84vh] sm:aspect-4/3 bg-slate-100 dark:bg-slate-900/70 flex items-center justify-center border-2 border-slate-200 dark:border-slate-700 rounded-md shadow-sm overflow-hidden mx-auto">
             <ImgWithFallback src={images[open ?? 0]} alt={`${altPrefix ?? 'Image'} ${open !== null ? open + 1 : 1}`} className="object-contain w-auto max-w-full max-h-full" />
           </div>
 
-            <button aria-label="Next" onClick={() => setOpen((i) => (i === null ? null : Math.min(images.length - 1, i + 1)))} className="absolute right-3 top-1/2 -translate-y-1/2 z-50 text-slate-900 dark:text-slate-100 text-3xl md:text-2xl bg-white/90 dark:bg-slate-800/80 hover:bg-white/95 dark:hover:bg-slate-700/70 p-3 sm:p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-white" title="Next">›</button>
+            <button aria-label="Next" onClick={() => setOpen((i) => (i === null ? null : Math.min(images.length - 1, i + 1)))} className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 z-50 text-slate-900 dark:text-slate-100 text-3xl md:text-2xl bg-white/90 dark:bg-slate-800/80 hover:bg-white/95 dark:hover:bg-slate-700/70 p-3 sm:p-3 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 dark:focus-visible:ring-white" title="Next">›</button>
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@ export default function Gallery({ images, altPrefix }: { images: string[]; altPr
     <div>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {images.map((src, i) => (
-          <button key={src} onClick={() => setOpen(i)} className="rounded overflow-hidden focus:outline-none shadow-sm hover:shadow-md transition-transform transform hover:scale-[1.02] border-2 border-slate-200 dark:border-slate-700">
+          <button key={src} onClick={() => setOpen(i)} className="cursor-pointer rounded overflow-hidden focus:outline-none shadow-sm hover:shadow-md transition-transform transform hover:scale-[1.02] border-2 border-slate-200 dark:border-slate-700">
             <div className="relative w-full h-36 sm:h-28 lg:h-36 overflow-hidden rounded">
               <ImgWithFallback src={src} alt={`${altPrefix ?? 'Image'} ${i + 1}`} className="object-cover rounded" />
             </div>

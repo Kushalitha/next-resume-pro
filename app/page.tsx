@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -28,11 +28,11 @@ export default function Home() {
   return (
     <section>
       <HeroAnimatedSection className="relative rounded-3xl py-4 md:py-4" style={{ background: 'linear-gradient(180deg, rgba(124,58,237,0.06), rgba(14,165,233,0.02))' }}>
-        <span className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-transparent to-cyan-500/10" />
+        <span className="pointer-events-none absolute inset-0 rounded-3xl bg-linear-to-br from-indigo-500/10 via-transparent to-cyan-500/10" />
         <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-start sm:items-start">
             <div className="pt-4 md:pt-6 pb-6 md:pb-8">
-              <h1 className="h1 mb-1 md:mb-3.5 pb-1 md:pb-1 leading-[1.18] md:leading-[1.18] text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-indigo-600">{hero.name}</h1>
+              <h1 className="h1 mb-1 md:mb-3.5 pb-1 md:pb-1 leading-[1.18] md:leading-[1.18] text-transparent bg-clip-text bg-linear-to-r from-accent-600 to-indigo-600">{hero.name}</h1>
               <div className="h2 mt-1 text-slate-700 dark:text-slate-200">{hero.role} • {hero.location}</div>
               <TypedText texts={hero.taglines} speed={60} backspaceSpeed={50} pause={1200} className="mt-3 text-lg text-slate-600 dark:text-slate-300 max-w-xl" />
 

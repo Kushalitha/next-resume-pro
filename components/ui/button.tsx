@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -22,7 +22,7 @@ type PrimaryProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export default function UIPrimaryButton({ children, className, href, ...props }: PrimaryProps) {
-  const classes = `inline-flex transform-gpu transition-all duration-200 ease-in-expo items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold shadow-md bg-gradient-to-r from-accent-500 via-purple-500 to-indigo-500 text-white hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-[rgba(124,58,237,0.14)] ${className ?? ''}`;
+  const classes = `cursor-pointer inline-flex transform-gpu transition-all duration-200 ease-in-expo items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold shadow-md bg-linear-to-r from-accent-500 via-purple-500 to-indigo-500 text-white hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus-visible:ring-4 focus-visible:ring-[rgba(124,58,237,0.14)] ${className ?? ''}`;
 
   if (href) {
     return (

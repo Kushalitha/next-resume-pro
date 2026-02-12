@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -58,7 +58,7 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['600','700','800'], varia
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.png" />
         {/* Inline theme init to avoid flash of incorrect theme before hydration */}

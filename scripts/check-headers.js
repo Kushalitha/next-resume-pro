@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Header to look for
-const HEADER_SNIPPET = 'Next Resume Pro v1.0.0';
+const HEADER_SNIPPET = 'Next Resume Pro v2.0.0';
 
 function walk(dir) {
   const out = [];

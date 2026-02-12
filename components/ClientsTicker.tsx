@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -30,7 +30,7 @@ export default function ClientsTicker({ clients }: { clients: { id: string; name
   const items = clients.map((c) => {
     const displayMode: 'logo' | 'name' = c.showLogo && c.logo ? 'logo' : c.showName ? 'name' : c.logo ? 'logo' : 'name';
     return (
-      <div key={c.id} className="flex flex-col items-center gap-1 min-w-[140px] mr-4" role="listitem">
+      <div key={c.id} className="flex flex-col items-center gap-1 min-w-35 mr-4" role="listitem">
         {displayMode === 'logo' ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={c.logo ?? ''} alt={c.name} className="h-10 w-auto object-contain" />

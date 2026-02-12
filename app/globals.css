@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -12,24 +12,92 @@
 * https://github.com/Kushalitha
 */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Slate colors (default Tailwind palette) */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  
+  /* Brand colors */
+  --color-brand-50: #f5f7ff;
+  --color-brand-100: #eef2ff;
+  --color-brand-500: #6366f1;
+  
+  /* Accent colors */
+  --color-accent-50: #f5f3ff;
+  --color-accent-100: #efe8ff;
+  --color-accent-300: #a78bfa;
+  --color-accent-500: #7c3aed;
+  --color-accent-600: #6d28d9;
+  --color-accent-700: #5b21b6;
+  --color-accent-800: #4c1d95;
+  
+  --color-accent2-500: #0ea5e9;
+  
+  /* Cyan colors */
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-700: #0e7490;
+  
+  /* Blue colors */
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-300: #60a5fa;
+  --color-blue-500: #2563eb;
+  --color-blue-700: #1e40af;
+  
+  /* Indigo colors */
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-600: #4f46e5;
+  
+  /* Surface colors */
+  --color-surface: #fafafa;
+  --color-surface-muted: #f3f4f6;
+  
+  /* Dark colors */
+  --color-dark: #0b1220;
+  --color-dark-muted: #0f1724;
+  
+  /* Shadows */
+  --shadow-card-md: 0 6px 18px rgba(16,24,40,0.08);
+  --shadow-card-lg: 0 12px 40px rgba(2,6,23,0.12);
+  
+  /* Border radius */
+  --radius-xl: 1rem;
+  
+  /* Timing functions */
+  --ease-in-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 :root {
   --radius: 1rem;
-  --bg: #f8fafc; /* light neutral surface */
-  --surface: #ffffff; /* solid surface color for UI elements */
+  --bg: #f8fafc;
+  --surface: #ffffff;
   --muted: #f1f5f9;
   --text: #0f172a;
-  --accent: 124 58 237; /* indigo as RGB */
-  --accent-2: 14 165 233; /* cyan */
+  --accent: 124 58 237;
+  --accent-2: 14 165 233;
 }
 
 .dark {
-  --bg: linear-gradient(180deg, #0B0F19 0%, #0E1324 100%); /* main dark background gradient */
-  --surface: #0b1220; /* solid surface for UI elements in dark */
-  --muted: #0b1220;
+  --bg: #0a0f1a;
+  --surface: #0b1220;
+  --muted: #0f1724;
   --text: #e6eef8;
 } 
 
@@ -47,8 +115,23 @@ body {
 
 /* Modern card utility */
 .card {
-  @apply bg-white/95 dark:bg-slate-900/95 shadow-card-md rounded-xl p-6 md:p-8 border border-slate-100 dark:border-slate-800;
+  background: rgb(255 255 255 / 0.95);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.08);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid rgb(241 245 249 / 1);
   transition: box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 2rem;
+  }
+}
+
+.dark .card {
+  background: rgb(15 23 42 / 0.95);
+  border-color: rgb(30 41 59 / 1);
 }
 
 /* Stronger visible state for interactive or focused cards */
@@ -70,17 +153,14 @@ body {
 
 /* Buttons */
 .btn {
-  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 ease-in-out;
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, rgba(var(--accent),0.12), rgba(var(--accent-2),0.12));
-  color: rgb(var(--accent));
-  border: 1px solid rgba(124,58,237,0.12);
-}
-
-.btn-cta {
-  @apply btn bg-gradient-to-r from-accent-500 via-purple-500 to-indigo-500 text-white shadow-md hover:shadow-lg transform-gpu hover:-translate-y-0.5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 200ms ease-in-out;
 }
 
 /* Focus visible (keyboard) */
@@ -131,12 +211,30 @@ body {
 
 /* Headings */
 .h1 {
-  @apply text-4xl md:text-5xl font-extrabold tracking-tight leading-tight;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
   font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
+
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 3rem;
+  }
+}
+
 .h2 {
-  @apply text-2xl md:text-3xl font-bold tracking-tight;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   font-family: var(--font-poppins), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+@media (min-width: 768px) {
+  .h2 {
+    font-size: 1.875rem;
+  }
 }
 
 /* Animations */

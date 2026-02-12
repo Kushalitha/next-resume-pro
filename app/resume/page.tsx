@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -35,11 +35,11 @@ export default function Resume() {
       <div className="flex flex-col sm:flex-row items-start justify-between">
         <div className="w-full sm:flex-1">
           <h1 className="h1 mb-2">{resume.title}</h1>
-          <div className="w-10 h-1 rounded bg-[color:rgb(var(--accent))] mb-4" />
+          <div className="w-10 h-1 rounded bg-[rgb(var(--accent))] mb-4" />
           <p className="text-slate-600 dark:text-slate-300 w-full max-w-none">Work experience, education, and skills with downloadable CV.</p>
         </div>
 
-        <div className="mt-4 mb-4 sm:mt-1 sm:ml-4 sm:flex-shrink-0 w-full sm:w-auto flex justify-center sm:justify-end">
+        <div className="mt-4 mb-4 sm:mt-1 sm:ml-4 sm:shrink-0 w-full sm:w-auto flex justify-center sm:justify-end">
           <Link href="/resume.pdf" className="inline-block px-4 py-2 rounded-md bg-brand-500 text-white">
             Download CV
           </Link>

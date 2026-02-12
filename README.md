@@ -1,5 +1,5 @@
 <!--
-Next Resume Pro v1.0.0
+Next Resume Pro v2.0.0
 Author: Kushalitha Maduranga
 Year: 2026
 
@@ -23,11 +23,11 @@ https://github.com/Kushalitha
     <!-- License -->
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="License" />
     <!-- Version -->
-    <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="Version" />
+    <img src="https://img.shields.io/badge/version-2.0.0-blue" alt="Version" />
      <!-- Next.js version -->
-    <img src="https://img.shields.io/badge/Next.js-14.2-black?logo=next.js" alt="Next.js version" />
+    <img src="https://img.shields.io/badge/Next.js-16.1.6-black?logo=next.js" alt="Next.js version" />
     <!-- React version -->
-    <img src="https://img.shields.io/badge/React-18.3-blue?logo=react" alt="React version" />
+    <img src="https://img.shields.io/badge/React-19.2.3-blue?logo=react" alt="React version" />
     <!-- TypeScript version -->
     <img src="https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript" alt="TypeScript version" />
     <!-- Stars -->
@@ -77,11 +77,14 @@ https://github.com/Kushalitha
 
 Comprehensive feature set designed for professional portfolios, focused on accessibility, performance, and deployability.
 
+> **🎉 v2.0.0 Major Upgrade:** Now powered by Next.js 16, React 19 and Tailwind CSS v4 for enhanced performance and modern development experience.
+
 ### Core
 
-- Next.js 14 App Router (server & client components)
+- Next.js 16 App Router (server & client components, Turbopack)
+- React 19 with advanced features and improved performance
 - TypeScript (strict mode) throughout the codebase
-- Tailwind CSS utility based styling and accessible UI components
+- Tailwind CSS v4 utility-based styling and accessible UI components
 
 ### SEO & Social
 

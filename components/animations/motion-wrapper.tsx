@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -23,7 +23,7 @@ import type { HTMLMotionProps } from 'framer-motion';
  * user's `prefers-reduced-motion` setting by disabling animations
  * when reduction is requested.
  */
-function withReduced<T extends keyof JSX.IntrinsicElements>(Comp: any) {
+function withReduced<T extends keyof React.JSX.IntrinsicElements>(Comp: any) {
   // Avoid over-constraining motion prop types across different framer-motion versions;
   // accept any props and preserve runtime behavior while still enforcing reduced-motion.
   return function ReducedMotionWrapper(props: any) {
