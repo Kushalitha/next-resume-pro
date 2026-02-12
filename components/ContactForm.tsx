@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -14,7 +14,7 @@
 
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import UIInput from './ui/input';
 import UIPrimaryButton from './ui/button';
 
@@ -29,7 +29,7 @@ export default function ContactForm() {
   const subjectRef = useRef<HTMLInputElement | null>(null);
   const messageRef = useRef<HTMLTextAreaElement | null>(null);
 
-  function validate(): Record<string, string> {
+  const validate = useCallback((): Record<string, string> => {
     const errs: Record<string, string> = {};
     if (!values.name.trim()) errs.name = 'Please enter your name.';
     if (!values.email.trim()) errs.email = 'Please enter your email address.';
@@ -37,9 +37,9 @@ export default function ContactForm() {
     if (!values.subject.trim()) errs.subject = 'Please provide a subject.';
     if (!values.message.trim()) errs.message = 'Please enter a message.';
     return errs;
-  }
+  }, [values]);
 
-  async function handleSubmit(e: React.FormEvent) {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Honeypot: treat as successfully handled to avoid processing
@@ -96,7 +96,7 @@ export default function ContactForm() {
     } catch (err) {
       setStatus('error');
     }
-  }
+  }, [values, validate, nameRef, emailRef, subjectRef, messageRef]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4" aria-live="polite" noValidate>

@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -53,12 +53,12 @@ export default async function Portfolio() {
       <div className="grid grid-cols-1 gap-6">
         <div>
           <h1 className="h1 mb-2">Portfolio</h1>
-          <div className="w-10 h-1 rounded bg-[color:rgb(var(--accent))] mb-4" />
+          <div className="w-10 h-1 rounded bg-[rgb(var(--accent))] mb-4" />
           <p className="text-slate-600 dark:text-slate-300">Filterable projects and highlighted GitHub repositories.</p>
         </div>
 
         <div>
-          <div className="bg-[color:var(--muted)]/80 dark:bg-[color:var(--surface)]/70 rounded-xl py-6 px-0">
+          <div className="bg-(--muted)/80 dark:bg-(--surface)/70 rounded-xl py-6 px-0">
             {/* Portfolio grid with filters */}
             <PortfolioGrid items={portfolio} />
           </div>

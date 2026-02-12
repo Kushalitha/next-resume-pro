@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -30,7 +30,7 @@ export default function UISecondaryButton({ children, className, href, ...props 
     return (
       <a
         href={href}
-        className={`inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium bg-surface bg-opacity-80 dark:bg-slate-700/40 dark:text-slate-100 text-[color:var(--text)] border border-slate-200 dark:border-slate-700 hover:bg-surface/95 dark:hover:bg-slate-700/60 hover:shadow-sm dark:hover:shadow-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-600/30 ${className ?? ''}`}
+        className={`inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium bg-surface bg-opacity-80 dark:bg-slate-700/40 dark:text-slate-100 text-(--text) border border-slate-200 dark:border-slate-700 hover:bg-surface/95 dark:hover:bg-slate-700/60 hover:shadow-sm dark:hover:shadow-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-600/30 ${className ?? ''}`}
         {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
         {children}
@@ -40,7 +40,7 @@ export default function UISecondaryButton({ children, className, href, ...props 
 
   return (
     <button
-      className={`inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium bg-surface bg-opacity-80 dark:bg-slate-700/40 dark:text-slate-100 text-[color:var(--text)] border border-slate-200 dark:border-slate-700 hover:bg-surface/95 dark:hover:bg-slate-700/60 hover:shadow-sm dark:hover:shadow-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-600/30 ${className ?? ''}`}
+      className={`inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium bg-surface bg-opacity-80 dark:bg-slate-700/40 dark:text-slate-100 text-(--text) border border-slate-200 dark:border-slate-700 hover:bg-surface/95 dark:hover:bg-slate-700/60 hover:shadow-sm dark:hover:shadow-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-600/30 ${className ?? ''}`}
       {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}

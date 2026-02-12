@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -14,7 +14,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import type { Project } from '../types';
 
 export default function ProjectModal({ repo, onClose }: { repo: Project | null; onClose: () => void }) {
@@ -29,7 +29,7 @@ export default function ProjectModal({ repo, onClose }: { repo: Project | null; 
       <div role="dialog" aria-modal="true" aria-label={`Project details: ${displayName}`} className="bg-white dark:bg-slate-800 rounded-lg p-6 z-10 max-w-2xl w-full transform transition-all duration-150 scale-100">
         <div className="flex items-start justify-between">
           <h3 className="text-lg font-semibold">{displayName}</h3>
-          <button onClick={onClose} className="text-sm text-slate-500" aria-label="Close project modal">
+          <button onClick={onClose} className="cursor-pointer text-sm text-slate-500 hover:text-slate-700 dark:hover:text-slate-300" aria-label="Close project modal">
             Close
           </button>
         </div>

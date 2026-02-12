@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -11,6 +11,8 @@
 * Repository:
 * https://github.com/Kushalitha
 */
+
+import React from 'react';
 
 type TimelineItem =
   | {
@@ -33,7 +35,7 @@ type TimelineItem =
       desc?: string;
     };
 
-export default function Timeline({ items }: { items?: TimelineItem[] }) {
+const Timeline = React.memo(function Timeline({ items }: { items?: TimelineItem[] }) {
   const defaultItems: TimelineItem[] = [
     { title: 'Senior Developer', company: 'Acme Inc', from: '2022', to: 'Present', desc: 'Building great products.' },
     { title: 'Mid-level Developer', company: 'Widget Co', from: '2019', to: '2022', desc: 'Worked on core platform.' }
@@ -50,7 +52,7 @@ export default function Timeline({ items }: { items?: TimelineItem[] }) {
 
         return (
           <div key={idx} className="flex gap-4 transition-transform hover:-translate-y-1">
-            <div className="w-12 flex-shrink-0 flex items-center justify-center">
+            <div className="w-12 shrink-0 flex items-center justify-center">
               <div className="h-10 w-10 rounded-full bg-brand-500 text-white flex items-center justify-center">{(title || it.company).charAt(0)}</div>
             </div>
             <div>
@@ -70,4 +72,6 @@ export default function Timeline({ items }: { items?: TimelineItem[] }) {
       })}
     </div>
   );
-}
+});
+
+export default Timeline;

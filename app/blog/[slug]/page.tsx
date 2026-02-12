@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -15,19 +15,17 @@
 import { notFound } from 'next/navigation'
 import posts from '../../../content/blog'
 import sanitizeHtml from '../../../lib/sanitizeHtml'
-import dynamic from 'next/dynamic'
+import PostContentClient from '../../../components/PostContentClient'
 import Image from 'next/image'
 import Link from 'next/link'
 import { site } from '../../../content/site'
 
-const PostContentClient = dynamic(() => import('../../../components/PostContentClient'), { ssr: false })
-
 interface Params {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Params) {
-  const { slug } = params
+  const { slug } = await params
   const post = posts.find((p) => p.slug === slug)
   if (!post) return {}
 
@@ -64,8 +62,8 @@ export async function generateMetadata({ params }: Params) {
   }
 }
 
-export default function BlogPost({ params }: Params) {
-  const { slug } = params
+export default async function BlogPost({ params }: Params) {
+  const { slug } = await params
 
   const post = posts.find((p) => p.slug === slug)
   if (!post) return notFound()
@@ -94,10 +92,10 @@ export default function BlogPost({ params }: Params) {
 
         <div className="mt-3 mb-4 flex flex-wrap gap-2">
           {post.categories?.map((c) => (
-            <Link key={`cat-${c}`} href={`/blog?category=${encodeURIComponent(c)}`} className="inline-block text-xs px-2 py-1 rounded bg-[color:var(--muted)]/60">{c}</Link>
+            <Link key={`cat-${c}`} href={`/blog?category=${encodeURIComponent(c)}`} className="inline-block text-xs px-2 py-1 rounded bg-(--muted)/60">{c}</Link>
           ))}
           {post.tags?.map((t) => (
-            <Link key={`tag-${t}`} href={`/blog?tag=${encodeURIComponent(t)}`} className="inline-block text-xs px-2 py-1 rounded bg-[color:var(--accent)]/10 text-accent">{t}</Link>
+            <Link key={`tag-${t}`} href={`/blog?tag=${encodeURIComponent(t)}`} className="inline-block text-xs px-2 py-1 rounded bg-(--accent)/10 text-accent">{t}</Link>
           ))}
         </div>
 

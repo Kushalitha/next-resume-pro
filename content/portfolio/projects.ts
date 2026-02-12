@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -26,7 +26,7 @@ export const projects = [
     cover: '/portfolio/portrait-series-1.jpg',
     tags: ['Portrait', 'Editorial'],
     href: '/portfolio/portrait-series',
-    liveUrl: 'https://demo.example.com/portrait-series',
+    liveUrl: 'https://github.com/Kushalitha?tab=repositories',
     details: 'Gallery site with client proofing and downloadable high-res images.',
     gallery: [
       '/portfolio/photo-1.jpg',
@@ -42,7 +42,7 @@ export const projects = [
     cover: '/portfolio/landscape-book.jpg',
     tags: ['Landscape', 'Fine Art'],
     href: '/portfolio/landscape-book',
-    liveUrl: 'https://demo.example.com/landscape-book',
+    liveUrl: 'https://github.com/Kushalitha?tab=repositories',
     details: 'Print-ready layouts and a companion website for buyers.',
     gallery: [
       '/portfolio/photo-1.jpg',
@@ -56,8 +56,8 @@ export const projects = [
     short: 'A Next.js + Tailwind template for creatives with integrated galleries.',
     cover: '/portfolio/studio-portfolio.jpg',
     tags: ['Next.js', 'TypeScript', 'Tailwind'],
-    href: 'https://github.com/kushalitha/studio-portfolio',
-    repoUrl: 'https://github.com/kushalitha/studio-portfolio',
+    href: 'https://github.com/Kushalitha?tab=repositories',
+    repoUrl: 'https://github.com/Kushalitha/next-resume-pro',
     details: 'Open-source template showcasing photography with CMS-ready hooks.',
     gallery: [
       '/portfolio/photo-1.jpg',
@@ -72,8 +72,8 @@ export const projects = [
     cover: '/portfolio/client-gallery.jpg',
     tags: ['React', 'Next.js'],
     href: '/portfolio/client-gallery',
-    liveUrl: 'https://demo.example.com/client-gallery',
-    repoUrl: 'https://github.com/kushalitha/client-gallery',
+    liveUrl: 'https://github.com/Kushalitha',
+    repoUrl: 'https://github.com/Kushalitha?tab=repositories',
     details: 'Secure client galleries with access codes and image download packs.',
     gallery: [
       '/portfolio/photo-1.jpg',
@@ -89,7 +89,7 @@ export const projects = [
     cover: '/portfolio/ecommerce-studio.jpg',
     tags: ['ecommerce', 'performance'],
     href: '/portfolio/ecommerce-studio',
-    repoUrl: 'https://github.com/kushalitha/ecommerce-studio',
+    repoUrl: 'https://github.com/Kushalitha?tab=repositories',
     details: 'Headless commerce frontend with product galleries and smooth checkout flow.',
     gallery: [
       '/portfolio/photo-1.jpg',
@@ -104,7 +104,7 @@ export const projects = [
     cover: '/portfolio/branding-campaign.jpg',
     tags: ['branding', 'photography'],
     href: '/portfolio/branding-campaign',
-    liveUrl: 'https://demo.example.com/branding-campaign',
+    liveUrl: 'https://github.com/Kushalitha?tab=repositories',
     details: 'Campaign microsite with conversion-focused design and photo galleries.',
     gallery: [
       '/portfolio/photo-1.jpg',
@@ -136,7 +136,7 @@ export const projects = [
     tags: ['demo', 'web', 'accessibility'],
     href: '/portfolio/demo-project',
     liveUrl: 'https://demo.example.com/demo-project',
-    repoUrl: 'https://github.com/kushalitha/demo-project',
+    repoUrl: 'https://github.com/Kushalitha?tab=repositories',
     details: 'A demo site used in examples and tests that includes a small gallery and accessible UI elements.',
     gallery: [
       '/portfolio/photo-1.jpg',

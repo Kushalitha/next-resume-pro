@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -14,7 +14,7 @@
 
 export default function Loading() {
   return (
-    <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-white/40 dark:bg-black/40 backdrop-blur-md" role="status" aria-live="polite" aria-label="Loading">
+    <div className="fixed inset-0 z-99999 flex items-center justify-center bg-white/40 dark:bg-black/40 backdrop-blur-md" role="status" aria-live="polite" aria-label="Loading">
       <div className="flex flex-col items-center gap-3 px-4 py-6 text-center">
         <div className="inline-flex items-center gap-3" aria-hidden="true">
           <span className="dot" />

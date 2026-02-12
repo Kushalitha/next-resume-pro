@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -19,7 +19,7 @@ import UICard from './ui/card';
 import UIPrimaryButton from './ui/button';
 import type { Project } from '../types';
 
-export default function ProjectCard({ repo, onOpen }: { repo: Project; onOpen?: (r: Project) => void }) {
+const ProjectCard = React.memo(function ProjectCard({ repo, onOpen }: { repo: Project; onOpen?: (r: Project) => void }) {
   const displayName = 'name' in repo ? repo.name : (repo.title || 'Untitled');
   const url = 'html_url' in repo ? repo.html_url : (repo.href || repo.liveUrl || repo.repoUrl);
   const stars = repo.stargazers_count || 0;
@@ -28,7 +28,7 @@ export default function ProjectCard({ repo, onOpen }: { repo: Project; onOpen?: 
     <UICard className="hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => onOpen && onOpen(repo)}>
       <div className="flex items-start justify-between">
         <div className="flex items-start gap-3">
-          <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-accent-500 to-indigo-500 mt-1" />
+          <div className="w-1.5 h-1.5 rounded-full bg-linear-to-r from-accent-500 to-indigo-500 mt-1" />
           <h3 className="font-semibold">{displayName}</h3>
         </div>
         <div className="text-xs text-slate-500 dark:text-slate-400">{repo.language}</div>
@@ -45,4 +45,6 @@ export default function ProjectCard({ repo, onOpen }: { repo: Project; onOpen?: 
       </div>
     </UICard>
   );
-}
+});
+
+export default ProjectCard;

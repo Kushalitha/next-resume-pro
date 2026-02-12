@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -100,7 +100,7 @@ export default function TypedText({ text, texts, speed = 40, backspaceSpeed = 30
   return (
     <div className={`${className} typed-text`} role="status" aria-live="polite">
       <span>{displayed}</span>
-      <span className="inline-block w-1 h-4 align-middle bg-[color:var(--accent-2)] ml-1 animate-blink" />
+      <span className="inline-block w-1 h-4 align-middle bg-(--accent-2) ml-1 animate-blink" />
       <style jsx>{`
         .animate-blink {
           animation: blink 1s steps(1) infinite;

@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -67,7 +67,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       aria-disabled={disabled}
       title={disabled ? 'Loading theme...' : 'Toggle theme'}
-      className={`p-2 rounded-md ${disabled ? 'opacity-60 cursor-wait pointer-events-none' : 'bg-slate-100 dark:bg-slate-700'}`}
+      className={`p-2 rounded-md transition-colors ${disabled ? 'opacity-60 cursor-wait pointer-events-none' : 'cursor-pointer bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600'}`}
     >
       {/* Sun visible in light theme, Moon visible in dark theme (CSS-only) */}
       <Sun size={16} className="block dark:hidden" aria-hidden="true" />

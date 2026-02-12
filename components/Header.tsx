@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -27,11 +27,11 @@ export default function Header() {
   const activeClass = 'text-accent-600/90 font-semibold';
 
   return (
-    <header className="w-full sticky top-0 z-40 backdrop-blur-sm bg-[color:var(--surface)]/80 dark:bg-[color:var(--surface)]/80 border-b border-slate-100/50 dark:border-slate-800/60 shadow-sm dark:shadow transition-shadow" role="banner">
+    <header className="w-full sticky top-0 z-40 backdrop-blur-sm bg-(--surface)/80 dark:bg-(--surface)/80 border-b border-slate-100/50 dark:border-slate-800/60 shadow-sm dark:shadow transition-shadow" role="banner">
       <div className="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/" className="font-extrabold text-base md:text-lg tracking-tight" aria-label="Home">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-600 to-indigo-600">Next Resume Pro</span>
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-600 to-indigo-600">Next Resume Pro</span>
           </Link>
         </div>
 
@@ -64,7 +64,7 @@ export default function Header() {
           <div className="block md:hidden">
             <ThemeToggle />
           </div>
-          <button aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(!open)} className="p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+          <button aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(!open)} className="cursor-pointer p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
             {open ? <X /> : <Menu />}
           </button>
         </div>
@@ -72,7 +72,7 @@ export default function Header() {
         {/* Mobile menu panel */}
         {open && (
           <div 
-            className="absolute right-4 top-16 z-50 bg-[color:var(--surface)] dark:bg-[color:var(--surface)]/90 border border-slate-100 dark:border-slate-800 rounded-lg shadow-lg p-4 md:hidden"
+            className="absolute right-4 top-16 z-50 bg-(--surface) dark:bg-(--surface)/90 border border-slate-100 dark:border-slate-800 rounded-lg shadow-lg p-4 md:hidden"
             role="dialog"
             aria-label="Mobile navigation menu"
           >

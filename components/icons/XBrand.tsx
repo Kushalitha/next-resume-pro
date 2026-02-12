@@ -1,3 +1,17 @@
+/**
+* Next Resume Pro v2.0.0
+* Author: Kushalitha Maduranga
+* Year: 2026
+*
+* License:
+* - Code (TypeScript, JavaScript, build scripts): MIT License
+* - UI / Design (CSS, layout, visual components): CC BY 4.0
+* 	Attribution Required
+*
+* Repository:
+* https://github.com/Kushalitha
+*/
+
 import * as React from 'react';
 
 export default function XBrand({ className = 'h-5 w-5', ...props }: React.SVGProps<SVGSVGElement>) {
@@ -10,8 +24,8 @@ export default function XBrand({ className = 'h-5 w-5', ...props }: React.SVGPro
       className={className}
       {...props}
     >
-      {/* Stylized X mark (brand-like) */}
-      <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+      {/* X brand logo */}
+      <path d="M13.8 10.5L20.7 2.3h-1.6l-6 6.8-4.8-6.8H2.2l7.2 10.5L2.2 21.7h1.6l6.4-7.2 5.1 7.2h6.1L13.8 10.5zm-2.3 2.6l-.7-1.1L4.9 3.7h2.5l4.6 6.5.7 1.1 6.2 8.7h-2.5l-4.9-6.9z"/>
     </svg>
   );
 }

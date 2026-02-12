@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -103,11 +103,11 @@ export default function BlogGrid({ posts, pageSize = 15 }: Props) {
 
             <div className="mt-3 flex flex-wrap gap-2">
               {p.categories?.map((c) => (
-                <button key={`cat-${c}`} onClick={() => updateQuery(c, null)} className="inline-block text-xs px-2 py-1 rounded bg-[color:var(--muted)]/60">{c}</button>
+                <button key={`cat-${c}`} onClick={() => updateQuery(c, null)} className="inline-block text-xs px-2 py-1 rounded bg-(--muted)/60">{c}</button>
               ))}
 
               {p.tags?.map((t) => (
-                <button key={`tag-${t}`} onClick={() => updateQuery(null, t)} className="inline-block text-xs px-2 py-1 rounded bg-[color:var(--accent)]/10 text-accent">{t}</button>
+                <button key={`tag-${t}`} onClick={() => updateQuery(null, t)} className="inline-block text-xs px-2 py-1 rounded bg-(--accent)/10 text-accent">{t}</button>
               ))}
             </div>
 

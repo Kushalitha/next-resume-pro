@@ -1,5 +1,5 @@
 /**
-* Next Resume Pro v1.0.0
+* Next Resume Pro v2.0.0
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -14,7 +14,7 @@
 
 import React from 'react';
 
-export default function SkillBar({ label, percent }: { label: string; percent: number }) {
+const SkillBar = React.memo(function SkillBar({ label, percent }: { label: string; percent: number }) {
   return (
     <div className="mb-4">
       <div className="flex items-center justify-between mb-1">
@@ -23,7 +23,7 @@ export default function SkillBar({ label, percent }: { label: string; percent: n
       </div>
       <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-accent-500 to-indigo-500"
+          className="h-full bg-linear-to-r from-accent-500 to-indigo-500"
           style={{ width: `${Math.min(100, Math.max(0, percent))}%` }}
           role="progressbar"
           aria-valuenow={percent}
@@ -33,4 +33,6 @@ export default function SkillBar({ label, percent }: { label: string; percent: n
       </div>
     </div>
   );
-} 
+});
+
+export default SkillBar; 
