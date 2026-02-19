@@ -46,7 +46,7 @@ export default function About() {
                 alt={about.photoAlt} 
                 width={600}
                 height={800}
-                className="w-full h-56 sm:h-80 md:h-96 lg:h-[460px] rounded-lg object-cover" 
+                className="w-full h-56 sm:h-80 md:h-96 lg:h-115 rounded-lg object-cover" 
                 priority
                 unoptimized
               />

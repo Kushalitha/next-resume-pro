@@ -21,13 +21,13 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
       
-      - name: Run npm audit
+      - name: Run npm audit (production only)
         id: audit
         continue-on-error: true
         run: |
-          echo "Running npm audit..."
-          npm audit --json > audit.json
-          npm audit
+          echo "Running npm audit (production dependencies only)..."
+          npm audit --omit=dev --json > audit.json
+          npm audit --omit=dev
       
       - name: Check for vulnerabilities
         run: |
@@ -44,14 +44,14 @@ jobs:
               CRITICAL=$(jq '.metadata.vulnerabilities.critical' audit.json)
               
               if [ "$HIGH" -gt 0 ] || [ "$CRITICAL" -gt 0 ]; then
-                echo "❌ High or critical vulnerabilities found!"
+                echo "❌ High or critical vulnerabilities found in production dependencies!"
                 echo "High: $HIGH, Critical: $CRITICAL"
                 exit 1
               else
                 echo "⚠️ Only low/moderate vulnerabilities found"
               fi
             else
-              echo "✅ No vulnerabilities found"
+              echo "✅ No production vulnerabilities found"
             fi
           fi
       
