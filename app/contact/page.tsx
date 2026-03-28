@@ -1,5 +1,5 @@
-/**
- * Next Resume Pro v2.0.0
+﻿/**
+ * Next Resume Pro v2.1.0
  * Author: Kushalitha Maduranga
  * GitHub: https://github.com/Kushalitha
  * License: MIT — Please credit if modified or redistributed

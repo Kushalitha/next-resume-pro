@@ -1,5 +1,5 @@
-<!--
-Next Resume Pro v2.0.0
+﻿<!--
+Next Resume Pro v2.1.0
 Author: Kushalitha Maduranga
 Year: 2026
 
@@ -77,7 +77,7 @@ https://github.com/Kushalitha
 
 Comprehensive feature set designed for professional portfolios, focused on accessibility, performance, and deployability.
 
-> **🎉 v2.0.0 Major Upgrade:** Now powered by Next.js 16, React 19 and Tailwind CSS v4 for enhanced performance and modern development experience.
+> **🎉 v2.1.0 Major Upgrade:** Now powered by Next.js 16, React 19 and Tailwind CSS v4 for enhanced performance and modern development experience.
 
 ### Core
 
