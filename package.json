@@ -10,7 +10,21 @@
   "overrides": {
     "jsonpath": "npm:jsonpath-plus@^10.2.0",
     "undici": ">=7.24.6",
-    "dompurify": ">=3.3.2"
+    "dompurify": ">=3.3.2",
+    "flatted": ">=3.4.2",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "9.0.9",
+      "brace-expansion": "2.0.3"
+    },
+    "minimatch": {
+      "brace-expansion": "1.1.13"
+    },
+    "tinyglobby": {
+      "picomatch": "4.0.4"
+    },
+    "vitest": {
+      "picomatch": "4.0.4"
+    }
   },
   "scripts": {
     "dev": "next dev",
