@@ -23,7 +23,7 @@ https://github.com/Kushalitha
     <!-- License -->
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="License" />
     <!-- Version -->
-    <img src="https://img.shields.io/badge/version-2.0.0-blue" alt="Version" />
+    <img src="https://img.shields.io/badge/version-2.1.0-blue" alt="Version" />
      <!-- Next.js version -->
     <img src="https://img.shields.io/badge/Next.js-16.1.6-black?logo=next.js" alt="Next.js version" />
     <!-- React version -->
