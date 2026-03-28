@@ -57,13 +57,13 @@
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.0",
     "@types/node": "^20.19.37",
-    "@types/nodemailer": "^7.0.9",
+    "@types/nodemailer": "^7.0.11",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.24",
+    "autoprefixer": "^10.4.27",
     "axe-core": "4.11.1",
-    "brace-expansion": "^5.0.2",
+    "brace-expansion": "^5.0.5",
     "chokidar": "^5.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
@@ -75,7 +75,7 @@
     "prettier": "3.8.1",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "4.1.0",
+    "vitest": "4.1.2",
     "wait-on": "8.0.5"
   }
 }
