@@ -1,6 +1,6 @@
 {
   "name": "next-resume-pro",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Kushalitha Maduranga",
   "license": "(MIT AND CC-BY-4.0)",
   "engines": {
@@ -10,7 +10,22 @@
   "overrides": {
     "jsonpath": "npm:jsonpath-plus@^10.2.0",
     "undici": ">=7.24.6",
-    "dompurify": ">=3.3.2"
+    "dompurify": ">=3.4.1",
+    "flatted": ">=3.4.2",
+    "follow-redirects": ">=1.16.0",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "9.0.9",
+      "brace-expansion": "2.0.3"
+    },
+    "minimatch": {
+      "brace-expansion": "1.1.13"
+    },
+    "tinyglobby": {
+      "picomatch": "4.0.4"
+    },
+    "vitest": {
+      "picomatch": "4.0.4"
+    }
   },
   "scripts": {
     "dev": "next dev",
@@ -38,44 +53,44 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "axios": "^1.13.4",
+    "axios": "^1.15.2",
     "clsx": "^2.1.0",
-    "framer-motion": "^12.34.0",
+    "framer-motion": "^12.38.0",
     "isomorphic-dompurify": "^2.36.0",
     "lucide-react": "^0.577.0",
-    "next": "16.2.1",
+    "next": "16.2.3",
     "next-themes": "^0.4.6",
-    "nodemailer": "^8.0.4",
+    "nodemailer": "^8.0.5",
     "prismjs": "^1.30.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
     "redis": "^4.6.7",
-    "swr": "^2.4.0"
+    "swr": "^2.4.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.0",
-    "@types/node": "^20.19.37",
-    "@types/nodemailer": "^7.0.9",
+    "@types/node": "^20.19.39",
+    "@types/nodemailer": "^8.0.0",
     "@types/prismjs": "^1.26.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.24",
-    "axe-core": "4.11.1",
-    "brace-expansion": "^5.0.2",
+    "autoprefixer": "^10.5.0",
+    "axe-core": "4.11.3",
+    "brace-expansion": "^5.0.5",
     "chokidar": "^5.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.2.1",
+    "eslint-config-next": "16.2.4",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "husky": "^8.0.0",
     "pa11y": "9.1.1",
     "pa11y-ci": "4.1.0",
-    "postcss": "8.5.8",
-    "prettier": "3.8.1",
+    "postcss": "8.5.10",
+    "prettier": "3.8.3",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "4.1.0",
+    "vitest": "4.1.5",
     "wait-on": "8.0.5"
   }
 }
