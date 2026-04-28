@@ -1,5 +1,5 @@
-﻿/**
-* Next Resume Pro v2.1.0
+/**
+* Next Resume Pro v2.1.1
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
@@ -13,7 +13,7 @@
 */
 
 /**
-* Next Resume Pro v2.1.0
+* Next Resume Pro v2.1.1
 * Author: Kushalitha Maduranga
 * Year: 2026
 *
