@@ -1,5 +1,5 @@
-﻿<!--
-Next Resume Pro v2.1.0
+<!--
+Next Resume Pro v2.1.1
 Author: Kushalitha Maduranga
 Year: 2026
 
@@ -23,7 +23,7 @@ https://github.com/Kushalitha
     <!-- License -->
     <img src="https://img.shields.io/badge/license-MIT-brightgreen" alt="License" />
     <!-- Version -->
-    <img src="https://img.shields.io/badge/version-2.1.0-blue" alt="Version" />
+    <img src="https://img.shields.io/badge/version-2.1.1-blue" alt="Version" />
      <!-- Next.js version -->
     <img src="https://img.shields.io/badge/Next.js-16.1.6-black?logo=next.js" alt="Next.js version" />
     <!-- React version -->
@@ -77,7 +77,7 @@ https://github.com/Kushalitha
 
 Comprehensive feature set designed for professional portfolios, focused on accessibility, performance, and deployability.
 
-> **🎉 v2.1.0 Major Upgrade:** Now powered by Next.js 16, React 19 and Tailwind CSS v4 for enhanced performance and modern development experience.
+> **🎉 v2.1.1 Security Patch:** All 17 Dependabot vulnerabilities fixed — next 16.2.4, axios 1.15.2, nodemailer 8.0.5, postcss 8.5.10 and transitive dep overrides (dompurify, vite, follow-redirects, lodash, basic-ftp).
 
 ### Core
 
